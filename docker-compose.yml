@@ -1,0 +1,6 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["waitress-serve", "--port", "8001", "app:app"]
