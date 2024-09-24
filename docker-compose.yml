@@ -1,6 +1,22 @@
 services:
-  api:
+  app:
     build:
-      context: .
+      context: app
       dockerfile: Dockerfile
-    command: ["waitress-serve", "--port", "8001", "app:app"]
+    ports:
+      - "9001:9001"
+    command: ["waitress-serve", "--port", "9001", "app:app"]
+
+  prometheus:
+    build:
+      context: prometheus
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    command: ["--config.file=/config/config.yaml"]
+
+  grafana:
+    image: grafana/grafana-enterprise
+    restart: unless-stopped
+    ports:
+     - "3000:3000"

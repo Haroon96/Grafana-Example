@@ -20,13 +20,17 @@ def dec():
     api_counter.dec()
     return jsonify({'value': api_counter._value.get()})
 
+@app.route("/value")
+def value():
+    return jsonify({'value': api_counter._value.get()})
+
 @app.route("/metrics")
 def metrics():
     return generate_latest()
 
 @app.route("/")
 def index():
-    return 'Running'
+    return open('index.html').read()
 
 # run app on port 9001
 if __name__ == '__main__':

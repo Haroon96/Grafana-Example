@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Counter</title>
+    <style>body { text-align: center; } button { padding: 30px; }</style>
+</head>
+<body>
+    <button onclick="increment()">Increment</button>
+    <button onclick="decrement()">Decrement</button>
+    <p id="value"></p>
+    <script>
+        function increment() {
+            fetch('/increment')
+                .then(x => x.json())
+                .then(x => {
+                    document.getElementById('value').innerHTML = x.value;
+                })
+        }
+
+        function decrement() {
+            fetch('/decrement')
+                .then(x => x.json())
+                .then(x => {
+                    document.getElementById('value').innerHTML = x.value;
+                })
+        }
+
+        function load_value() {
+            fetch('/value')
+                .then(x => x.json())
+                .then(x => {
+                    document.getElementById('value').innerHTML = x.value;
+                })
+        }
+
+        window.onload = load_value;
+    </script>
+</body>
+</html>

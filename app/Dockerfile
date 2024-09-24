@@ -18,10 +18,8 @@ WORKDIR /app
 
 # install python dependencies
 COPY requirements.txt ./requirements.txt
-RUN pip install requirements.txt
+RUN pip install -r requirements.txt
 
 # copy app
 COPY app.py ./app.py
-
-# command
-CMD ["waitress-serve", "--host", "0.0.0.0", "--port", "8001", "app:app"]
+COPY index.html ./index.html
